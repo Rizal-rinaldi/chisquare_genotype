@@ -1,0 +1,24 @@
+CSQ_genotype <- function (data) {
+  as <- table(data)
+  p <- (as.numeric((2*as[1])+as[2]))/(2*length(data))
+  q <- (as.numeric((2*as[3])+as[2]))/(2*length(data))
+  HO <- as.numeric(as[2]/length(data))
+  HE <- 1-(p^2+q^2)
+  E_Table <- as.vector(c(p^2, 2*p*q, q^2))
+  O_Table <- as.vector(c(as.numeric(as[1]/length(data)), as.numeric(as[2]/length(data)), as.numeric(as[3]/length(data))))
+  
+  Result <- chisq.test(O_Table, p = E_Table)
+frquensi_result <- data.frame(
+  Frekuensi_Alel_Dominan = p,
+  Frekuensi_Alel_Resesif = q,
+  HO = HO,
+  HE = HE
+)
+print(frquensi_result)
+result_data <- data.frame(
+  genotype = c(row.names(as)),
+  Observed = O_Table,
+  Expected = E_Table)
+print(result_data)
+ return(Result)
+}
