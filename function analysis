@@ -11,7 +11,7 @@ CSQ_genotype <- function (data) {
                         (as.numeric(as[2]/length(data)))*(length(data)), 
                         (as.numeric(as[3]/length(data)))*(length(data))))
   
-  Result <- chisq.test(O_Table, p = E_Table)
+  Result <- chisq.test(O_Table, p = E_Table/length(data))
 frquensi_result <- data.frame(
   Frekuensi_Alel_Dominan = p,
   Frekuensi_Alel_Resesif = q,
