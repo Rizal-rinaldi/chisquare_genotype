@@ -22,7 +22,9 @@ print(frquensi_result)
 result_data <- data.frame(
   genotype = c(row.names(as)),
   Observed = O_Table,
-  Expected = E_Table)
+  freq_observed = O_Table/length(data) ,
+  Expected = E_Table,
+  freq_expected = E_Table/length(data))
 print(result_data)
  return(Result)
 }
