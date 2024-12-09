@@ -4,8 +4,12 @@ CSQ_genotype <- function (data) {
   q <- (as.numeric((2*as[3])+as[2]))/(2*length(data))
   HO <- as.numeric(as[2]/length(data))
   HE <- 1-(p^2+q^2)
-  E_Table <- as.vector(c(p^2, 2*p*q, q^2))
-  O_Table <- as.vector(c(as.numeric(as[1]/length(data)), as.numeric(as[2]/length(data)), as.numeric(as[3]/length(data))))
+  E_Table <- as.vector(c(p^2*length(data), 
+                        2*p*q*length(data), 
+                        q^2*length(data)))
+  O_Table <- as.vector(c((as.numeric(as[1]/length(data)))*(length(data)), 
+                        (as.numeric(as[2]/length(data)))*(length(data)), 
+                        (as.numeric(as[3]/length(data)))*(length(data))))
   
   Result <- chisq.test(O_Table, p = E_Table)
 frquensi_result <- data.frame(
